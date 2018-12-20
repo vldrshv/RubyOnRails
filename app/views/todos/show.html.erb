@@ -1,0 +1,40 @@
+<h1> Extended Project </h1>
+
+<h2>
+	<strong>Title:</strong>
+	<%= @project.title %>
+</h2>
+
+<h2>Задачи:</h2>
+<% @project.todos.each do |todo| %>
+	<li>
+		<%= todo.title %>
+	</li>
+
+<% end %>
+
+<br>
+
+<h2>Add todo:</h2>
+<%= render 'form' %>
+<!--
+<%= form_with(model: [ @project, @project.todos.build ], local: true) do |form| %>
+	<p>
+		<%= form.label :title %><br>
+		<%= form.text_field :title %>
+	</p>
+	
+	<p>
+		<%= form.label "Done" %>
+		<%= form.check_box :isComplited %> <br>
+	</p>
+
+	<p>
+		<%= form.submit %>
+	</p>
+
+<% end %>
+-->
+
+<%= link_to 'Back to listing', projects_path %> || 
+<%= link_to 'Edit', edit_project_path(@project) %>

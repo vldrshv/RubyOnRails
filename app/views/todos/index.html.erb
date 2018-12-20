@@ -1,0 +1,18 @@
+<h1>Listing Todos</h1>
+ 
+ <%= link_to 'New project', new_project_path %>
+ <br>
+ <br>
+  <% @projects.each do |p| %>
+        <% p.todos.each do |todo| %>
+          <li>
+            <%= todo.title %> | <<%= todo.isComplited %> | <%= todo.project_id %>
+          </li>
+        <% end %>
+        <%= link_to 'Show', project_path(p) %>
+      <%= link_to 'Edit', edit_project_path(p) %> <br>
+  <% end %>
+
+
+<br>
+<%= link_to 'Back to listing', projects_path %>

@@ -1,0 +1,56 @@
+<!--
+<script type="text/javascript">
+  
+</script>
+-->
+<%= javascript_include_tag "application" %>
+<h1>Listing Projects</h1>
+ <%= link_to 'New project', new_project_path %>
+ <br>
+ <br>
+
+  <% @projects.each do |p| %>
+      <h3><%= p.title %></h3>
+        <% p.todos.each do |todo| %>
+          <li>
+            <%= todo.title %>
+            <%= link_to 'Edit', edit_todo_path(todo) %> <br>
+          </li>
+        <% end %>
+        <%= link_to 'Show', project_path(p) %>
+      <%= link_to 'Edit', edit_project_path(p) %> <br>
+  <% end %>
+
+
+<br>
+<%= link_to 'Back to listing', projects_path %>
+<div id = "todo_form">
+  <h3>New Todo</h3>
+  <b>Project title:</b>
+  <%= form_with model: @todo, local: true do |form| %>
+    <select name="project_id" id="id" value="exist">
+      <% cities_array = Project.all.map { |p| [p.title, p.id] } %>
+      <%= options_for_select(cities_array) %>
+    </select>
+
+    <p>
+      <!--<%= form.label :title %><br>-->
+      <%= form.text_field :title, placeholder: "title of todo"%>
+    </p>
+    
+    <p>
+      <%= form.label "Done" %>
+      <%= form.check_box :isComplited %> <br>
+    </p>
+    <!--<%= form_tag new_todo_path, :method => "get" do %>-->
+      <p>
+        <input value="Отменить" onclick="hide()" type="button">
+        <button type="submit" value="new_todo">OK</button>
+        <!--<%= form.submit title="OK"%>-->
+      </p>
+    <!--<% end %>-->
+  <% end %>
+</div>
+<p>
+  <input value="+" onclick="unhide()" type="button">
+</p>
