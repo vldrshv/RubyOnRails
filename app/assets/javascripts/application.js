@@ -22,11 +22,12 @@ document.addEventListener('DOMContentLoaded', function(){
   function unhide(){
     div = document.getElementById('todo_form');
     div.style.display = 'inline';
-    console.log("MouseEnter!");
+    btn_add = document.getElementById('+');
+    btn_add.style.display = 'none';
   }
 
   function hide(){
     div = document.getElementById('todo_form');
     div.style.display = 'none';
-    console.log("MouseEnter!");
+    btn_add.style.display = 'inline';
   }
